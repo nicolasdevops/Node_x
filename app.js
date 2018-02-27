@@ -120,16 +120,16 @@ app.get('/:id', function(req, res, next) {
     client.connect();
     console.log('Connected to db');
     //pg.connect(connectionString, (err, client, done) => {
-       client.query('SELECT qrs.rx2($1, 1);', [req.query.qs]
-           , function(err, result){if(err){ return console.error('error running query', err);}}
-           /*(err, res) => {
+       client.query('SELECT qrs.rs4($1, 1);', [req.query.qs],
+         //  , function(err, result){if(err){ return console.error('error running query', err);}}
+           (err, res) => {
            if (err) {
                console.error(err.stack)
            } else {
                //console.log(res.rows) // ['brianc']
 
            }
-       }  */
+       }
        );
         //console.log('query done');
         //const query =
@@ -137,11 +137,13 @@ app.get('/:id', function(req, res, next) {
             client.query('select * FROM qrs.resultsy;',
             //client.query('select row_to_json(prototable) from qrs.prototable;',
                 function(err, result){if(err){ return console.error('error running query', err);}
-                //console.log(JSON.stringify(result.rows));
+                //console.log('stringify: ', JSON.stringify(result.rows));
                 //var myjson = JSON.stringify(result.rows);
                 //console.log(JSON.stringify(result.rows));
-                //console.log(myjson);
-                var myjson = result.rows;
+                   // console.log('result.rows: ' + result.rows);
+                var myjson = JSON.stringify(result.rows);
+                //console.log('JSON OBJECT: ' + myjson);
+
                 res.end(myjson);
                 client.end()
             });

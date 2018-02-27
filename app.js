@@ -93,13 +93,8 @@ res.send('query word: ' + req.url + ' and body: ' + req.body);
 */
 
 const { Pool, Client } = require('pg')
-const connectionString = 'postgresql://postgres:a@localhost:5432/WN';
-const client = new Client({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'WN',
-    password: 'a',
-    port: 5432,
+const connectionString = 'HIDDEN FROM GIT VERSION';
+const client = new Client({//HIDDEN FROM GIT VERSION
 })
 
 app.get('/:id', function(req, res, next) {
